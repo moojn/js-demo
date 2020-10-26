@@ -1,0 +1,44 @@
+*{
+	margin: 0 auto;
+	padding: 0;
+}
+
+#div1{
+	width: 400px;
+	height: 660px;
+	float: mid;
+	margin-top: 40px;
+	background-color:#DBDBDB ;
+}
+
+#div1 div{
+	padding: 20px 20px 20px;
+}
+#div1 li{
+	width: 100px;
+	height: 100px;
+	background-color:#2E2E2E;
+	margin:8px;
+	float: left;
+	font-size: 30px;
+	text-align: center;
+	line-height: 50px;
+	color: #DBDBDB;
+	border: 2px solid #2E2E2E;
+}
+#div1 .active2{
+	
+	background-color:#235356;
+	color: #DBDBDB;
+	border: 2px solid #2E2E2E;
+}
+
+
+#text{
+	clear: both;
+	width: 304px;
+	height: 100px;
+	background-color:#F0EFE5;
+	text-align: center;
+	line-height: 100px;
+}

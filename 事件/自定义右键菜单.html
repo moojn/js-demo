@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义右键菜单</title>
+</head>
+<script>
+    //右键弹出菜单事件
+    document.oncontextmenu=function(event)
+    {
+        //return false;
+        var oDiv=document.getElementById('div1');
+        oDiv.style.display='block';
+        oDiv.style.left=event.clientX+'px';
+        oDiv.style.top=event.clientY+'px';
+        return false;
+    }
+
+    //右键取消菜单
+    document.onclick=function()
+    {
+        var oDiv=document.getElementById('div1');
+        var aLi=oDiv.getElementsByTagName('li')
+        oDiv.style.display='none';
+        
+        //取消选中的li
+        for(var i=0;i<aLi.length;i++)
+        {
+            aLi[i].className='';
+        }
+    }
+
+    //点击div时不取消菜单
+    window.onload=function()
+    {
+        var oDiv=document.getElementById('div1');
+        var aLi=oDiv.getElementsByTagName('li')
+        oDiv.onclick=function(event)
+        {
+            oDiv.style.display='block';
+            event.cancelBubble=true;
+        }
+
+        for(var i=0;i<aLi.length;i++)
+        {
+            aLi[i].onmousemove=function()
+            {
+                for(var i=0;i<aLi.length;i++)
+                {
+                    aLi[i].className='';
+                }
+                this.className='active';
+            }
+        }
+    }
+    
+</script>
+<style>
+    div{
+        width: 100px;
+        height: 200px;
+        background-color: aqua;
+        position:absolute;
+        display: none;
+
+    }
+   li{
+       list-style: none;
+       border: 1px solid black;
+       width: 98px;
+       height: 48px;
+   }
+   #div1 .active
+   {
+       background-color: cadetblue;
+   }
+   ul{
+       margin: 2px -41px;
+   }
+</style>
+<body>
+    <div id="div1">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+</body>
+</html>

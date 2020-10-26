@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>去掉html标签</title>
+</head>
+<script>
+window.onload=function()
+{
+    var oTxt1=document.getElementById('txt1');
+    var oTxt2=document.getElementById('txt2');
+    var oBtn1=document.getElementById('btn1');
+
+    //var re=/<[^<>]+>/g;
+    oBtn1.onclick=function()
+    {
+        //<除了<>外的任意字符>
+        var re=/<[^<>]+>/g;
+    oTxt2.value=oTxt1.value.replace(re,'');
+    }
+}
+</script>
+<body>
+    <textarea rows="10" cols="40" id="txt1"></textarea>
+    <br>
+    <input type="button" value="转换" id="btn1">
+    <br>
+    <textarea rows="10" cols="40" id="txt2"></textarea>
+</body>
+</html>

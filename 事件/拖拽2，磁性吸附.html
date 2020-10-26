@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>磁性吸附</title>
+</head>
+<style>
+    #div1{
+        position: relative;
+        width: 600px;
+        height: 600px;
+        background-color: burlywood;
+    }
+    #div2{
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background-color: cadetblue;
+    }
+</style>
+
+<script>
+    window.onload=function()
+    {
+        var oDiv1=document.getElementById('div1');
+        var oDiv2=document.getElementById('div2');
+
+        var disX=0;
+        var disY=0;
+        oDiv2.onmousedown=function(event)
+        {
+            disX=event.clientX-oDiv2.offsetLeft;
+            disY=event.clientY-oDiv2.offsetTop;
+
+           
+            //鼠标移动
+            document.onmousemove=function(event)
+            {
+                oDiv2.style.left=event.clientX-disX+'px';
+                oDiv2.style.top=event.clientY-disY+'px';
+
+                //防止div被拖出父级，并实现磁性吸附
+                if(oDiv2.offsetLeft<20)
+                {
+                    oDiv2.style.left=0;
+                }
+                if(oDiv2.offsetTop<20)
+                {
+                    oDiv2.style.top=0;
+                }
+                if(oDiv2.offsetLeft>380)
+                {
+                    oDiv2.style.left=400+'px';
+                }
+                if(oDiv2.offsetTop>380)
+                {
+                    oDiv2.style.top=400+'px';
+                }
+
+
+                oDiv2.onmouseup=function()
+                {
+                document.onmousemove=null;
+                document.onmouseup=null;
+                };
+                return false;
+            };
+
+        };
+    }
+</script>
+<body>
+    <div id="div1">
+        <div id="div2">
+            123341
+        </div>
+        123124
+    </div>
+</body>
+</html>

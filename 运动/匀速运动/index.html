@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>匀速运动</title>
+    <style>
+        div{
+            width: 150px;
+            height: 300px;
+            background-color: coral;
+            position: absolute;
+            left: -150px;
+            
+        }
+        span{
+            width: 50px;
+            height: 80px;
+            background-color: cornflowerblue;
+            position: absolute;
+            left: 150px;
+            top: 100px;
+        }
+    </style>
+<script>
+    var time=null;
+    function starmove(iTage,speed)                              //运动框架      参数：目标，速度
+    {
+        var oDiv=document.getElementById('div1');
+        clearInterval(time);
+        time=setInterval(function()
+        {
+            if(oDiv.offsetLeft==iTage)
+            {
+                clearInterval(time);
+            }
+            else
+            {
+                oDiv.style.left=oDiv.offsetLeft+speed+'px';
+            }
+        }, 30);
+    }
+    window.onload=function()
+    {
+       var oDiv=document.getElementById('div1');
+       oDiv.onmouseover=function()                             //移入移出
+       {
+        starmove(0,10);
+       };
+       oDiv.onmouseout=function()
+       {
+        starmove(-150,-10);
+       };
+    }
+</script>
+</head>
+<body>
+    <div></div>
+    <div id="div1">
+        <span>分享到</span>
+    </div>
+</body>
+</html>

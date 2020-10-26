@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    window.onload=function()
+    {
+        var oTxt=document.getElementById('text1');
+        var oBtn=document.getElementById('btn1');
+        oBtn.onclick=function()
+        {
+            //window.open(打开的页面，打开的方式“_self,_blank等”)
+            var newWin=window.open('about:blank','_blank')                      //about:blank空白页,open有返回值：新打开的窗口
+            newWin.document.write(oTxt.value);
+
+        }
+
+
+        //读取当前地址
+        alert(window.location);
+        //浏览器信息
+        alert(window.navigator.userAgent);
+
+    }
+</script>
+<body>
+    <textarea rows="10" cols="40" id="text1"><input type="button" value="close" onclick='window.close()'></textarea>
+    <input type="button" value="打开" id="btn1"><br/>
+    <input type="button" value="百度" onclick="window.location='https://www.baidu.com/' ">
+    window.location可以用来赋值
+</body>
+</html>

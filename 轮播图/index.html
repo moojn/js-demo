@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="startMove.js"></script>
+    <script>
+        window.onload=function()
+        {
+            var oDiv1=document.getElementById('div1');
+
+            var oDiv2=document.getElementById('div2');
+
+            var oUl=document.getElementById('ul1');
+
+            var aCho=oDiv2.getElementsByTagName('input');
+
+           var now=0;
+
+            /*************点击切换图片*****************/
+            for(var i=0;i<aCho.length;i++)
+            {
+                aCho[i].index=i;
+                //now=this.index;
+                aCho[i].onclick=function()
+                {
+                    now=this.index;
+                    tab ();
+                };
+            }
+
+            /*************tab函数：改变图片以及按钮样式*****************/
+            function tab()
+            {
+                for(var i=0;i<aCho.length;i++)
+                {
+                    aCho[i].className='';
+                }
+                aCho[now].className='active';
+                startMove(oUl,{top:-400*now});
+                        
+            };
+
+            /*************next函数:遍历每张图片，当循环到最后一张切换到第一张*****************/
+            function next ()
+            {
+                now++;
+                if(now==aCho.length)
+                {
+                    now=0;
+                }
+                tab();
+            };
+            var time=setInterval(next,2000);
+
+
+            /*************鼠标移入移出关闭定时器*****************/
+            oDiv1.onmouseover=function()
+            {
+                clearInterval(time);
+            };
+            
+            oDiv1.onmouseout=function()
+            {
+                time=setInterval(next,2000);
+            }
+        };
+
+       
+    </script>
+</head>
+<body>
+    <!--轮播图主体-->
+    <div class="div1" id="div1">
+        <!--图片-->
+        <div>
+            <ul id="ul1">
+                <li><a href=""><img src="images/1.png"></a></li>
+                <li><a href=""><img src="images/2.png"></a></li>
+                <li><a href=""><img src="images/3.png"></a></li>
+                <li><a href=""><img src="images/4.png"></a></li>
+            </ul>
+             <!--按钮-->
+            <div class="div2" id="div2">
+                <input type="button" value="1" class="active">
+                <input type="button" value="2">
+                <input type="button" value="3">
+                <input type="button" value="4">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

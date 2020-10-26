@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function Creat(name,sex)                         //构造函数，创建对象，首字母大写
+    {
+        //var obj=new Object();
+        //在外面写new系统会偷偷创建
+
+        this.name=name;                              //this指代obj
+        this.sex=sex;
+
+        //return obj;
+        //在外面写new系统会偷偷返回
+    }
+
+    Creat.prototype.showName=function()             //利用原型创建方法，解决重复的问题
+    {
+        alert('姓名：'+this.name);                  //原型相当于class，写在构造函数内的方法相当于行间样式
+    }
+
+    Creat.prototype.showSex=function()
+    {
+        alert('性别：'+this.sex);
+    }
+
+    var obj1=new Creat('张三','男');
+    obj1.showName();
+    obj1.showSex();
+
+    var obj2=new Creat('李四','女');
+    obj2.showName();
+    obj2.showSex();
+    alert(obj1.showName==obj2.showName);
+</script>
+<body>
+    
+</body>
+</html>

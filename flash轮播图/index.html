@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="js/starMove.js"></script>
+<script>
+    window.onload=function()
+    {
+        oDiv=document.getElementById('div1');
+        oDiv.onmouseover=function()
+        {
+            starMove(oDiv,{width:250,height:400})
+        }
+        oDiv.onmouseout=function()
+        {
+            starMove(oDiv,{height:200},function()
+            {
+                starMove(oDiv,{width:200})
+            })
+        }
+    }
+</script>
+<style>
+    div{
+        width: 200px;
+        height: 200px;
+        background-color: cadetblue;
+    }
+</style>
+<body>
+    <div id="div1"></div>
+</body>
+</html>

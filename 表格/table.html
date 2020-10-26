@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表格</title>
+    <script>
+        window.onload=function()
+        {
+            var oTab=document.getElementById('tab1');
+            var oldcolor="";
+            //alert(oTab.getElementsByTagName('tbody')[0].getElementsByTagName('tr')[1].getElementsByTagName('td')[1].innerHTML);
+            //alert(oTab.tBodies[0].rows[1].cells[2].innerHTML);
+
+
+            //表格的便捷操作 tBodies,tHead,tFoot, rows, cells
+            //              表体    表头   表尾   行   单元格
+
+                   /************添加删除**********/
+                   var oName=document.getElementById('name');
+                 var oAge=document.getElementById('age');
+                 var oBtn=document.getElementById('btn1');
+                 var id=oTab.tBodies[0].rows.length+1;
+
+                 oBtn.onclick=function()
+                 {
+                     var otr=document.createElement('tr');
+                     oTab.tBodies[0].appendChild(otr);
+
+                     var oTd=document.createElement('td');
+                     oTd.innerHTML=id++;
+                     otr.appendChild(oTd);                              //appendChild将原有的元素从父级中删除，之后再添加到新的父级上
+
+                     var oTd=document.createElement('td');
+                     oTd.innerHTML=oName.value;
+                     otr.appendChild(oTd);
+
+                     var oTd=document.createElement('td');
+                     oTd.innerHTML=oAge.value;
+                     otr.appendChild(oTd);
+
+                     var oTd=document.createElement('td');
+                     oTd.innerHTML='<a href="">删除</a>';
+                     otr.appendChild(oTd);
+
+                     //删除函数有bug，待修改
+                     oTd.getElementsByTagName('a')[0].onclick=function()
+                        {
+                            oTab.tBodies[0].removeChild(this.parentNode.parentNode[0]);
+                        };
+                 }
+                 /************搜索**********/
+                 var oBtn2=document.getElementById('btn2');
+                 var oTxt=document.getElementById('search');
+                 oBtn2.onclick=function()
+                 {
+                    for (var i=0;i<oTab.tBodies[0].rows.length;i++)
+                 {
+                     if(oTab.tBodies.rows[i].cells[1].innerHTML==oTxt.value)
+                     {
+                        oTab.tBodies[0].rows[i].style.background='#122';
+                     }
+                     else
+                     {
+                        oTab.tBodies[0].rows[i].style.background=oldcolor;
+                     }
+                 };
+                 } ;               
+                 for (var i=0;i<oTab.tBodies[0].rows.length;i++)
+                {
+                /************鼠标移入高亮**********/
+                oTab.tBodies[0].rows[i].onmouseover=function()
+                {
+                    oldcolor=this.style.background;
+                    this.style.background='yellow';
+                }
+                oTab.tBodies[0].rows[i].onmouseout=function()
+                {
+                    this.style.background=oldcolor;                      //这里用到了oldcolor变量来存储没有鼠标事件之前表格的背景颜色
+                }                                                        //等到鼠标移出之后再把之前的颜色赋给表格  
+                /************隔行变色**********/
+                if(i%2)
+                {
+                    oTab.tBodies[0].rows[i].style.background='#ccc';
+                }
+                else
+                {
+                    oTab.tBodies[0].rows[i].style.background='brown';
+                }
+                }
+            };
+
+    </script>
+</head>
+<body>
+    姓名<input type="text" id="name" value="">
+    年龄<input type="text" id="age" value="">
+    <input type="button" value="添加" id="btn1">
+    搜索姓名<input type="text" id="search" value="">
+    <input type="button" value="搜索" id="btn2">
+    <table border="2px" width="500" id="tab1">
+        <thead>
+            <td>id</td>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>操作</td>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>李四</td>
+                <td>13</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>李华</td>
+                <td>23</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>王五</td>
+                <td>36</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>张明</td>
+                <td>19</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

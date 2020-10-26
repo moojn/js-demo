@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>键盘事件</title>
+</head>
+
+<script>
+    window.onload=function()
+    {
+        var oText1=document.getElementById('text1');
+        var oText2=document.getElementById('text2');
+        var oBtn=document.getElementById('btn1');
+
+        oBtn.onclick=function(event)
+        {
+            oText2.value+=oText1.value+'\n';
+            oText1.value='';
+        }
+
+        oText1.onkeydown=function(event)
+        {
+            if(event.keyCode==13&&event.ctrlKey)
+            {
+                oText2.value+=oText1.value+'\n';
+                oText1.value='';
+            }
+        }
+    }
+</script>
+<body>
+    <input type="text" id="text1">
+    <input type="button" value="提交" id="btn1"> <br/>
+
+    <textarea rows="10" cols="40" id="text2"></textarea>
+</body>
+</html>

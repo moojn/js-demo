@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    /********
+     * 静态方法：直接添加到类上面的方法
+     * 实例方法：添加到原型上的方法
+     * *******/
+    //工厂模式
+    
+    function creatPerson(name,sex)           //构造函数（创建对象的时候会创建一个构造函数）
+    {
+        //原料
+        var obj=new Object ();
+
+        //加工
+        obj.name=name;
+        obj.sex=sex;
+
+        obj.showName=function()
+        {
+            alert('姓名：'+this.name);
+        }
+        obj.showSex=function()
+        {
+            alert('性别：'+this.sex);
+        }
+        
+        //出厂
+        return obj;
+    }
+
+    var person1=creatPerson('张三','男');           //创建了一个person1对象
+    person1.showName();
+    person1.showSex();
+
+    var person2=creatPerson('李四','男');
+    person2.showName();
+    person2.showSex();
+
+    alert(person1.showName==person2.showName);      //这里的值为false，说明这两个函数不是同一个函数，占用了大量资源
+</script>
+<body>
+    
+</body>
+</html>

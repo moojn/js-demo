@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    window.onload=function()
+    {
+        var oTxt=document.getElementById('txt1');
+        var oBtn=document.getElementById('btn1');
+
+
+        oBtn.onclick=function()
+        {
+            //^任意数字，字母，下划线        @       任意字母，数字      .       任意字母$
+            var re=/^\w+@[a-z 0-9]+\.[a-z]+$/i;
+            var str=oTxt.value;
+            if(re.test(str))
+            {
+                alert("合法邮箱");
+            }
+            else
+            {
+                alert("不是合法邮箱");
+            }
+        }    
+    }
+</script>
+<body>
+    <input type="text" id="txt1">
+    <input type="button" id="btn1" value="查询">
+</body>
+</html>

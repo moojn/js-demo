@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>缓冲运动</title>
+    <style>
+        #div1{
+            width: 150px;
+            height: 300px;
+            background-color: cadetblue;
+            position: absolute;
+            left: 0;
+        }
+        #div2{
+            width: 1px;
+            height: 600px;
+            background-color: black;
+            position: absolute;
+            left: 600px;
+        }
+    </style>
+    <script>
+/*         window.onload=function()
+        {
+            var oBtn=document.getElementById('btn1');
+            var oDiv=document.getElementById('div1');
+            oBtn.onclick=function()
+            {
+                move(300);
+            }
+        }
+        var time=null;
+        function move(iTage)
+        {
+            var oDiv=document.getElementById('div1');
+            clearInterval(time);
+            time=setInterval(function()
+            {
+                var speed=(iTage-oDiv.offsetLeft)/10;
+                speed=speed>0?Math.ceil(speed):Math.floor(speed);
+                if(oDiv.offsetLeft=iTage)
+                {
+                    clearInterval(time);
+                }
+                else
+                {
+                    oDiv.style.left=oDiv.offsetLeft+speed+'px';
+                }
+            }, 30);
+        } */
+        var time=null;
+        function move( )
+        {
+            clearInterval(time);                                      //如果点击多次定时器会开多个，所以每次点击清除定时器
+            var oDiv=document.getElementById('div1');
+           time=setInterval(function()
+            {
+            var speed=(600-oDiv.offsetLeft)/10;                      //变速
+            speed=speed>0?Math.ceil(speed):Math.floor(speed);          //判断速度正负，并通过match（）方法取整     
+            if(oDiv.offsetLeft==600)                                   //注意：px为单位的只能是整数
+            {
+                clearInterval(time);
+            }
+            else
+            {
+                oDiv.style.left=oDiv.offsetLeft+speed+'px';
+            }   
+            }, 30);
+            
+        }
+
+        function move2( )
+        {
+            clearInterval(time);                                      //如果点击多次定时器会开多个，所以每次点击清除定时器
+            var oDiv=document.getElementById('div1');
+           time=setInterval(function()
+            {
+            var speed=(0-oDiv.offsetLeft)/10;                      //变速
+            speed=speed>0?Math.ceil(speed):Math.floor(speed);          //判断速度正负，并通过match（）方法取整     
+            if(oDiv.offsetLeft==0)                                   //注意：px为单位的只能是整数
+            {
+                clearInterval(time);
+            }
+            else
+            {
+                oDiv.style.left=oDiv.offsetLeft+speed+'px';
+            }   
+            }, 30);
+            
+        }
+        window.onload=function()
+        {
+            var oDiv=document.getElementById('div1');
+            var oBtn=document.getElementById('btn1');
+            oBtn.onclick=function()
+            {
+                if (oDiv.offsetLeft==0)
+                {
+                    move( );
+                }
+                else
+                {
+                    move2( );
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="运动" id="btn1" >
+    <div id="div1"></div>
+    <div id="div2"></div>
+</body>
+</html>

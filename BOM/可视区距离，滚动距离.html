@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    window.onload=function()
+    {
+        var oBtn=document.getElementById('btn1');
+        oBtn.onclick=function(event)
+        {
+            alert('可视区宽度：'+document.documentElement.clientWidth+'\n可视区高度：'+document.documentElement.clientHeight);
+            event.cancelBubble=true;
+        }
+        document.onclick=function()
+        {
+            alert('滚动距离：'+document.documentElement.scrollTop);
+        }
+    }
+    //滚动事件onscroll          改变页面大小事件onresize
+</script>
+<body style="height: 2000px;">
+    <input type="button" value="可视区宽高" id="btn1">
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <script>
+        window.onload=function()                                         
+        {
+             //无缝滚动，30ms,鼠标移入暂停，移出继续滚动
+            var oDiv=document.getElementById('div1');
+            var oUl=oDiv.getElementsByTagName('ul') [0];
+            var aLi=oDiv.getElementsByTagName('li');
+            var oBtn=document.getElementsByTagName('input');
+            var Time=null;
+            var speed=-2;
+            oUl.innerHTML+=oUl.innerHTML;
+            oUl.style.width=aLi[0].offsetWidth*aLi.length+160+'px';
+            //无缝滚动
+            function move()                                            
+            {
+                oUl.style.left=oUl.offsetLeft+speed+'px';
+                if(oUl.offsetLeft<-oUl.offsetWidth/2)                         //向右时
+                {
+                    oUl.style.left='0';
+                }
+                if(oUl.offsetLeft>0)                                          //向左时
+                {
+                    oUl.style.left=-oUl.offsetWidth/2+'px';
+                }
+            }
+            Time=setInterval(move, 30);
+
+           // 开始
+           oDiv.onmouseover=function()
+           {
+               clearInterval(Time);
+           }
+
+           //暂停
+           oDiv.onmouseout=function()
+           {
+            Time=setInterval(move, 30);
+           }
+           
+           //向左
+           oBtn[0].onclick=function()
+           {
+               speed=-2;
+           }
+
+           //向右
+           oBtn[1].onclick=function()
+           {
+               speed=2;
+           }
+
+        }
+    </script>
+    <title>无缝滚动</title>
+</head>
+<body>
+    <input type="button" value="向左"/>
+    <input type="button" value="向右"/>
+    <div id="div1">
+        <ul>
+            <li style="background-color: rgb(102, 190, 190);">1</li>
+            <li style="background-color: rgb(94, 43, 43);">2</li>
+            <li style="background-color: rgb(159, 221, 97);">3</li>
+            <li style="background-color: rgb(78, 78, 197);">4</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 20px;
+        height: 20px;
+        background-color: brown;
+        position: absolute;
+    }
+</style>
+<script>
+    function getpost(event)
+    {
+        var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+        var scrollLeft=document.documentElement.scrollLeft||document.body.scrollLeft;
+
+        return({x:event.clientX+scrollLeft,y:event.clientY+scrollTop})
+    }
+
+
+    var aDiv=document.getElementsByTagName('div');
+    document.onclick=function(event)
+    {
+       for(i=aDiv.length-1;i>0;i--)
+       {
+           aDiv[i].style.left=aDiv[i-1].offsetLeft+'px';
+           aDiv[i].style.top=aDiv[i-1].offsetTop+'px';
+       }
+
+       var pos=getpost(event);
+
+       aDiv[0].style.left=pos.x+'px';
+       aDiv[0].style.top=pos.y+'px';
+
+    }
+</script>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>

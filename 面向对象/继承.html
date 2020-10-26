@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function A( )
+    {
+        this.N='abc';
+    }
+    A.prototype.showN=function()
+    {
+        alert(this.N);
+    }
+    var objA=new A();
+    //obj.showN();
+    alert(objA.Q);                  //向B中添加属性不会影响到A
+
+
+    //继承
+    function B()            
+    {
+        A.call(this);               //将A中的this变成B中的this，B中的属性继承自A
+        this.Q='efg';
+    }
+    /*注意！！这样会把A，B指向同一内存空间，此时向B中添加方法也会给A添加同样的方法
+    A.prototype=B.prototype;  */
+
+
+
+    //解决办法(创建不同的内存空间)
+    for(var i in A.prototype)
+    {
+        B.prototype[i]=A.prototype[i];
+    }
+
+    var objB=new B();
+    alert(objB.N);                  //这里因为继承了A所以B中也有N这个属性
+</script>
+<body>
+    
+</body>
+</html>

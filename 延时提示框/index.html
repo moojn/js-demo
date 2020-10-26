@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>延时提示框</title>
+    <style>
+        div{float: left; margin: 10px;}
+        #div1{width: 50px; height: 50px; background-color: brown;}
+        #div2{width: 250px; height: 150px; background-color: cadetblue; display: none; }
+    </style>
+    <script>
+        window.onload=function()
+        {
+        var oDiv1=document.getElementById('div1');
+        var oDiv2=document.getElementById('div2');
+        var time=null;
+     /*   oDiv1.onmouseover=function()            //移入1显示，并且关闭延时隐藏定时器
+        {
+            clearTimeout(time);
+            oDiv2.style.display='block';
+        };
+        oDiv1.onmouseout=function()             //移出1延时0.5秒隐藏
+        {
+            time=setTimeout(function(){
+                oDiv2.style.display='none';
+            }, 500);
+        };
+        oDiv2.onmouseover=function()          //移入2清除延时
+        {
+            clearTimeout(time);
+        };
+        oDiv2.onmouseout=function()          //移出2延时0.5秒隐藏
+        {
+            time=setTimeout(function(){
+                oDiv2.style.display='none';
+            }, 500);
+        };*/
+        oDiv1.onmouseover=oDiv2.onmouseover=function()                                   //移入显示，关闭延时
+        {
+            clearTimeout(time);
+            oDiv2.style.display='block';
+        };
+        oDiv1.onmouseout=oDiv2.onmouseout=function()                                    //移出延时0.5秒隐藏
+        {
+            time=setTimeout(function(){
+                oDiv2.style.display='none';
+            }, 500);
+        };
+        }
+    </script>
+</head>
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+</body>
+</html>

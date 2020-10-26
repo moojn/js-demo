@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件绑定</title>
+    <script>
+        window.onload=function()
+        {
+            var oBtn1=document.getElementById('btn1');
+            var oBtn2=document.getElementById('btn2');
+
+            //btn1未绑定事件,事件会被覆盖
+            oBtn1.onclick=function()
+            {
+                alert('a');
+            }
+
+            oBtn1.onclick=function()
+            {
+                alert('b');
+            }
+
+            //绑定了事件，两个事件都会执行    addEventListener('事件'，函数，捕获) 
+            oBtn2.addEventListener('click',function()
+            {
+                alert('a');
+            },false);
+
+            oBtn2.addEventListener('click',function()
+            {
+                alert('b');
+            },false);
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="未绑定" id="btn1">
+<input type="button" value="已绑定" id="btn2">
+<br/>
+都为btn1和btn2添加了弹出a，以及弹出b的事件
+</body>
+</html>

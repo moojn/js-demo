@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    /*使用json整个程序中只有一个对象，不适合多个对象，例如ajax对象
+    写起来比较简单*/
+
+    //单体（整个程序中只有一个对象）
+    var json={
+        name:'张三',
+        sex:'man',
+        showName:function(){
+            alert(this.name);
+        },
+        showSex:function()
+        {
+            alert(this.sex);
+        }
+    }
+    json.showName();
+    json.showSex();
+</script>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function td(n)                                //空位补0
+        {    if(n<10)
+            {
+                return'0'+n;
+            }
+            else
+            {
+                return''+n;
+            }
+        }
+        window.onload=function()
+        {
+            var aImg=document.getElementsByTagName('img');
+            function gettime()                           //时钟
+            {
+            var oDat=new Date();                         //时间函数获取时间
+            var str=td(oDat.getHours())+td(oDat.getMinutes())+td(oDat.getSeconds());          //时间数组
+                for(var i=0;i<aImg.length;i++)                          //遍历图片，利用时间数组更改图片
+                    {
+                        aImg[i].src='images/'+str.charAt(i)+'.png';
+                    }     
+            }
+            gettime();
+            setInterval(gettime, 1000);             //定时器每隔一秒执行函数       
+        }
+        
+    </script>
+</head>
+<body>
+    <img src="images/0.png"/>
+    <img src="images/0.png"/>:
+    <img src="images/0.png"/>
+    <img src="images/0.png"/>:
+    <img src="images/0.png"/>
+    <img src="images/0.png"/>
+</body>
+</html>

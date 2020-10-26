@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拖拽</title>
+</head>
+<style>
+    div{
+        width: 200px;
+        height: 200px;
+        background-color: cadetblue;
+        position: absolute;
+        }
+</style>
+<script>
+    window.onload=function()
+    {
+        var disX=0;
+        var disY=0;
+        var oDiv=document.getElementById('div1');
+        oDiv.onmousedown=function(event)
+        {
+            disX=event.clientX-oDiv.offsetLeft;
+            disY=event.clientY-oDiv.offsetTop;
+
+            //只有当div被点击时才发生onmousemove事件
+            document.onmousemove=function(event)
+            {
+                oDiv.style.left=event.clientX-disX+'px';
+                oDiv.style.top=event.clientY-disY+'px';
+
+                //防止div被拖出页面
+                if(oDiv.offsetLeft<0)
+                {
+                    oDiv.style.left=0;
+                }
+                if(oDiv.offsetTop<0)
+                {
+                    oDiv.style.top=0;
+                }
+                //注右和下需用到bom对象，之后添加
+            }
+            document.onmouseup=function()
+            {
+                //onmouseup事件没有用处，这里也清除掉
+                document.onmousemove=null;
+                document.onmouseup=null;
+            }
+        }
+    }
+</script>
+<body>
+    <div id="div1"></div>
+</body>
+</html>

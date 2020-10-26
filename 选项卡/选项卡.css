@@ -1,0 +1,23 @@
+*{
+	margin: 0 auto;
+	padding: 0;
+}
+body{
+	width: 600px;
+	height: 600px;
+}
+#div1{
+	width: 255px;
+	height: 41px;
+	background-color: #235356;
+}
+#div1 input{
+	height: 40px;
+	width: 60px;
+	
+}
+#div1 .xuanxiang{
+	width: 50px;
+	height: 50px;
+	background-color: aqua;
+}

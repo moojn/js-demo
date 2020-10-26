@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    //设置(除非同名不然不会覆盖)
+    function setCOOKIE(name,value,idate)
+    {
+        var oDate=new Date();
+       oDate.setDate(oDate.getDate()+idate);                //设置时间=当前时间+保存时间
+
+       //document.cookie=name=张三;expries=oDate;
+       document.cookie=name+'='+value+';expires='+oDate;    //创建cookie
+        
+    }
+
+    //获取
+    function getCOOKIE(name)
+    {
+        var arr=document.cookie.split(';');     //cookie以[name=1,sex=man]这种形式存放在arr中
+        for(var i=0;i<arr.length;i++)
+        {
+            var arr2=arr[i].split('=');         //arr中的元素以[name,1] [sex,man]这种形式存放在arr2中
+            if(arr2[0]==name)
+            {
+                return arr2[1];
+            }
+        }
+        return '';
+    }
+
+    //删除
+    function removeCOOKIE(name)
+    {
+        setCOOKIE(name,1,-1);
+    }
+</script>
+<body>
+</body>
+</html>

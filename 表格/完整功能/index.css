@@ -1,0 +1,13 @@
+*{
+    margin: 10px auto;
+    padding: 0;
+}
+div{
+    width: 600px;
+}
+
+td{
+    width: 200px;
+    border: 1px solid #000;
+    text-align: center;
+}

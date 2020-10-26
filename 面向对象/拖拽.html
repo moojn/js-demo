@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #div1{width: 200px; height: 200px; background-color: brown; position: absolute; }
+    #div2{width: 200px; height: 200px; background-color: cadetblue;position:absolute;}
+    div{width: 800px; height: 500px; background-color: rgb(216, 199, 190);position: relative;}
+</style>
+<script src="Drag.js"></script>
+<script>
+    window.onload=function()
+    {
+        new Drag('div1');
+        new LimitDrag('div2');
+    }
+   //LimitDrag继承自父类Drag
+   function LimitDrag(id)
+   {
+       Drag.call(this,id);
+   }
+
+   for(var i in Drag.prototype)
+   {
+       LimitDrag.prototype[i]=Drag.prototype[i];
+   }
+
+   //改写LimitDrag的fnMove函数，实现限制范围的功能
+   //方法的重载（重写）
+   LimitDrag.prototype.fnMove=function(event)
+    {
+        this.oDiv.style.left=event.clientX-this.DisX+'px';
+        this.oDiv.style.top=event.clientY-this.DisY+'px';
+        if(this.oDiv.offsetLeft<0)
+        {
+            this.oDiv.style.left=0;
+        }
+        else if(this.oDiv.offsetLeft>600)
+        {
+            this.oDiv.style.left=600+'px';
+        }
+        
+        if(this.oDiv.offsetTop<0)
+        {
+            this.oDiv.style.top=0;
+        }
+        else if(this.oDiv.offsetTop>300)
+        {
+            this.oDiv.style.top=300+'px';
+        }
+    }
+</script>
+<body>
+    <div>
+    <div id="div1">普通拖拽</div>
+    <div id="div2">限制范围</div>
+    </div>
+    
+</body>
+</html>
